@@ -1,6 +1,5 @@
 package tech.abd3lraouf.learn.clean.weetwit.data.api
 
-import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
@@ -9,15 +8,15 @@ import tech.abd3lraouf.learn.clean.weetwit.data.model.ResponseModel
 
 interface TwitterService {
     @GET("search/tweets.json")
-    fun searchTweets(
+    suspend fun searchTweets(
         @Header("Authorization") authHeader: String,
         @Query("q") searchQuery: String,
         @Query("result_type") resultType: String?
-    ): Single<ResponseModel>
+    ): ResponseModel
 
     @GET
-    fun getResultsForUrl(
+    suspend fun getResultsForUrl(
         @Header("Authorization") authHeader: String,
         @Url urlString: String
-    ): Single<ResponseModel>
+    ): ResponseModel
 }

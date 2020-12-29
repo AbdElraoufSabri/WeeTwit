@@ -1,9 +1,9 @@
 package tech.abd3lraouf.learn.clean.weetwit.domain.port
 
-import io.reactivex.Single
-import tech.abd3lraouf.learn.clean.weetwit.data.model.ResponseModel
+import kotlinx.coroutines.flow.Flow
+import tech.abd3lraouf.learn.clean.weetwit.domain.entity.ResponseEntity
 
 interface IRepository {
-    fun getSearchResults(query: String, resultType: String?): Single<ResponseModel>
-    fun getNextResults(nextUrl: String): Single<ResponseModel>
+    suspend fun getSearchResults(query: String, resultType: String?): Flow<ResponseEntity>
+    suspend fun getNextResults(nextUrl: String): Flow<ResponseEntity>
 }
