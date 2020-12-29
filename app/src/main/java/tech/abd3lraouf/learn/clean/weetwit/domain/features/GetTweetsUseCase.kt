@@ -14,21 +14,25 @@ import javax.inject.Inject
 class GetTweetsUseCase @Inject constructor(
     private val scope: CoroutineScope,
     private val repository: IRepository
-) : FlowableUseCase<ResponseEntity, String>() {
+) : FlowableUseCase<ResponseEntity, Pair<String?, String?>>() {
 
     private val _stateFlow = MutableStateFlow<TweetUiState>(TweetUiState.UnInitialized)
 
     val stateFlow get() = _stateFlow
 
-    override suspend fun execute(params: String?) {
+    override suspend fun execute(params: Pair<String?, String?>?) {
         _stateFlow.value = TweetUiState.LoadingUiState
 
-        repository.getSearchResults(params!!, null)
-            .onEach {
-                val stateFlow = if (it.statusList.isEmpty()) TweetUiState.EmptyUiState else TweetUiState.SuccessUiState(it)
-                _stateFlow.value = stateFlow
-            }.catch { e -> _stateFlow.value = TweetUiState.ErrorUiState(e.localizedMessage!!) }
+        val split = (if (params?.second != null) repository.getNextResults(params.second!!) else repository.getSearchResults(params?.first!!, null))
+
+        split.onEach {
+            val stateFlow = if (it.statusList.isEmpty()) TweetUiState.EmptyUiState else TweetUiState.SuccessUiState(it)
+            _stateFlow.value = stateFlow
+        }.catch { e ->
+            _stateFlow.value = TweetUiState.ErrorUiState(e.localizedMessage!!)
+        }
             .launchIn(scope)
+
     }
 
     override fun cancel() = scope.cancel()

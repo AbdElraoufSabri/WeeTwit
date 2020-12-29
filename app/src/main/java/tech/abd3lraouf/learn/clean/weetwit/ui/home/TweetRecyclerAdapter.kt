@@ -8,13 +8,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_tweet.view.*
 import tech.abd3lraouf.learn.clean.weetwit.R
-import tech.abd3lraouf.learn.clean.weetwit.data.model.StatusModel
+import tech.abd3lraouf.learn.clean.weetwit.domain.entity.StatusEntity
 import tech.abd3lraouf.learn.clean.weetwit.util.ImageSizes
 import tech.abd3lraouf.learn.clean.weetwit.util.toSimpleDateString
 import tech.abd3lraouf.learn.clean.weetwit.util.userImageToSized
 
-class TweetRecyclerAdapter(private var tweets: List<StatusModel>) :
-    RecyclerView.Adapter<TweetRecyclerAdapter.TweetViewHolder>() {
+class TweetRecyclerAdapter(private var tweets: List<StatusEntity>) : RecyclerView.Adapter<TweetRecyclerAdapter.TweetViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
         return TweetViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.item_tweet, parent, false)
@@ -29,13 +29,16 @@ class TweetRecyclerAdapter(private var tweets: List<StatusModel>) :
         holder.bind(tweets[position])
     }
 
-    fun updateTweets(tweets: List<StatusModel>) {
-        this.tweets = tweets
+    fun updateTweets(tweets: List<StatusEntity>) {
+        val newList = this.tweets.toMutableList()
+        newList.addAll(tweets)
+        this.tweets = newList
+
         notifyDataSetChanged()
     }
 
     class TweetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(tweet: StatusModel) {
+        fun bind(tweet: StatusEntity) {
             Glide.with(itemView)
                 .load(tweet.user.profileImageUrl.userImageToSized(ImageSizes.SIZE_200))
                 .apply(RequestOptions.circleCropTransform()).into(itemView.userImage)

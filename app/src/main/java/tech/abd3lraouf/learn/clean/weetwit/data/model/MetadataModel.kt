@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class MetadataModel(
     @SerializedName("next_results")
-    val nextResults: String,
+    val nextResults: String?,
 )
