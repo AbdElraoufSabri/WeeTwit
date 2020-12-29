@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import tech.abd3lraouf.learn.clean.weetwit.domain.core.FlowableUseCase
 import tech.abd3lraouf.learn.clean.weetwit.domain.entity.ResponseEntity
+import tech.abd3lraouf.learn.clean.weetwit.domain.entity.state.TweetUiState
 import tech.abd3lraouf.learn.clean.weetwit.domain.port.IRepository
 import javax.inject.Inject
 

@@ -7,8 +7,8 @@ import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.FlowPreview
 import tech.abd3lraouf.learn.clean.weetwit.BuildConfig
 import tech.abd3lraouf.learn.clean.weetwit.data.model.StatusModel
+import tech.abd3lraouf.learn.clean.weetwit.domain.entity.state.TweetUiState
 import tech.abd3lraouf.learn.clean.weetwit.domain.features.GetTweetsUseCase
-import tech.abd3lraouf.learn.clean.weetwit.domain.features.TweetUiState
 
 @FlowPreview
 class HomeViewModel @ViewModelInject constructor(

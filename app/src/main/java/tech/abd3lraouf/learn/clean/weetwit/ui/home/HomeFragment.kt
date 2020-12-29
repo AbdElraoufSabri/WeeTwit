@@ -18,7 +18,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import tech.abd3lraouf.learn.clean.weetwit.R
 import tech.abd3lraouf.learn.clean.weetwit.domain.entity.StatusEntity
-import tech.abd3lraouf.learn.clean.weetwit.domain.features.TweetUiState
+import tech.abd3lraouf.learn.clean.weetwit.domain.entity.state.TweetUiState
 import tech.abd3lraouf.learn.clean.weetwit.presentation.features.HomeViewModel
 import tech.abd3lraouf.learn.clean.weetwit.util.DelayedTextWatcher
 

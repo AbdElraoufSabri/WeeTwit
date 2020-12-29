@@ -1,4 +1,4 @@
-package tech.abd3lraouf.learn.clean.weetwit.domain.features
+package tech.abd3lraouf.learn.clean.weetwit.domain.entity.state
 
 import tech.abd3lraouf.learn.clean.weetwit.domain.entity.ResponseEntity
 
