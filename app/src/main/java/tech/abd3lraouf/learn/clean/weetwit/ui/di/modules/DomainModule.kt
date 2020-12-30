@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import tech.abd3lraouf.learn.clean.weetwit.domain.features.GetTweetsUseCase
+import tech.abd3lraouf.learn.clean.weetwit.domain.port.IRepository
 import javax.inject.Singleton
 
 @Module
@@ -16,5 +18,11 @@ object DomainModule {
     @Singleton
     fun provideCoroutineScope(): CoroutineScope {
         return CoroutineScope(Dispatchers.Main)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUseCase(scope: CoroutineScope, repository: IRepository): GetTweetsUseCase {
+        return GetTweetsUseCase(scope, repository)
     }
 }

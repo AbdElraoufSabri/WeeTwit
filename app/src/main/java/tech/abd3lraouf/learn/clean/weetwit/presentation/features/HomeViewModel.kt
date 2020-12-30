@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.FlowPreview
 import tech.abd3lraouf.learn.clean.weetwit.BuildConfig
-import tech.abd3lraouf.learn.clean.weetwit.data.model.StatusModel
 import tech.abd3lraouf.learn.clean.weetwit.domain.entity.state.TweetUiState
 import tech.abd3lraouf.learn.clean.weetwit.domain.features.GetTweetsUseCase
 
-@FlowPreview
 class HomeViewModel @ViewModelInject constructor(
     private val tweetsUseCase: GetTweetsUseCase
 ) : ViewModel() {
@@ -49,9 +47,4 @@ class HomeViewModel @ViewModelInject constructor(
 
     }
 
-    private fun processNextResults(oldTweets: List<StatusModel>?, newTweets: List<StatusModel>): List<StatusModel>? {
-        val mergedTweets = oldTweets?.toMutableList()
-        newTweets.let { tweets -> mergedTweets?.addAll(tweets) }
-        return mergedTweets
-    }
 }

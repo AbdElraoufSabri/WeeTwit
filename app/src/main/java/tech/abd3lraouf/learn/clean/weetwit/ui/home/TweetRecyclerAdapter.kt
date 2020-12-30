@@ -30,10 +30,7 @@ class TweetRecyclerAdapter(private var tweets: List<StatusEntity>) : RecyclerVie
     }
 
     fun updateTweets(tweets: List<StatusEntity>) {
-        val newList = this.tweets.toMutableList()
-        newList.addAll(tweets)
-        this.tweets = newList
-
+        this.tweets = tweets
         notifyDataSetChanged()
     }
 

@@ -22,7 +22,6 @@ import tech.abd3lraouf.learn.clean.weetwit.domain.entity.state.TweetUiState
 import tech.abd3lraouf.learn.clean.weetwit.presentation.features.HomeViewModel
 import tech.abd3lraouf.learn.clean.weetwit.util.DelayedTextWatcher
 
-@FlowPreview
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private val TAG = "HomeFragment"

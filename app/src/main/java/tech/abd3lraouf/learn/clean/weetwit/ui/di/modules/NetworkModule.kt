@@ -8,7 +8,6 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.abd3lraouf.learn.clean.weetwit.BuildConfig
 import tech.abd3lraouf.learn.clean.weetwit.data.Repository
@@ -36,7 +35,6 @@ abstract class NetworkModule {
         fun provideService(httpClient: OkHttpClient): TwitterService {
             return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(httpClient)
                 .build()
